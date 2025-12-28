@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joy's blog_photoes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="width: auto; margin: 0%;">
+    <div style="position: relative; width: 100%;">
+        <div class="nav_links" id="nav_bar">
+            <div style="margin: 10%; font-size: 20px;margin-right: 50%;">
+                <b>Joy</b>
+            </div>
+            <div style="font-size: 18px;">
+                <a href="index.html">🏠 Home</a>
+                <a href="photoes.html">📷 Photo</a>
+                <a href="tec.html">🤖 Tec</a>
+                <a href="thinking.html">💡 Thinking</a>
+            </div>
+        </div>
+        <img src="image/tamako_6.png" alt="mob_profile" class="baseimg">
+        <div class="profile" id="profile">
+            <p style="height: 20px; margin-bottom:10px;margin-top: 0px;font-size: large;">
+                <b>本栏聚焦于摄影图像分享，希望能得到大家的好评！</b>
+            </p>
+            <div class="photo_container">
+                <div class="senary" style="text-align: center; align-content: center;">
+                    <h1>风景画</h1>
+                    <div class="horizenmtal">
+                        <img src="摄影/2025.12.27/IMG_3135.png" class="img_show">
+                        <img src="摄影/2025.12.21/IMG_3046.png" class="img_show">
+                        <img src="摄影/2025.12.13/IMG_2951.JPG" class="img_show">
+                        <img src="摄影/2025.12.13/IMG_2963.png" class="img_show">
+                        <img src="摄影/2025.12.27/IMG_3173.png" class="img_show">
+                    </div>
+                    <div class="vertical">
+                        <img src="摄影/2025.12.21/IMG_3075.JPG" class="img_show">
+                        <img src="摄影/2025.12.27/IMG_3148.png" class="img_show">
+                        <img src="摄影/2025.12.27/IMG_3163.png" class="img_show">
+                        <img src="摄影/2025.11.29campus/IMG_2856.png" class="img_show">
+                        <img src="摄影/2025.11.29campus/IMG_2917.png" class="img_show">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="lightbox-overlay" onclick="closeLightbox()">
+            <img id="lightbox-img" src="" alt="大图">
+        </div>
+
+
+    </div>
+    <script>
+        const nav_bar = document.getElementById('nav_bar');
+        const profile = document.getElementById('profile');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                nav_bar.classList.add('nav_hide');
+                profile.classList.add('profile_hide');
+
+            }
+            else if (currentScrollY < lastScrollY) {
+                nav_bar.classList.remove('nav_hide');
+                profile.classList.remove('profile_hide');
+            }
+            lastScrollY = currentScrollY;
+        });
+    </script>
+    <script>
+        const images = document.querySelectorAll('.img_show');
+        const overlay = document.getElementById('lightbox-overlay');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                overlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        function closeLightbox() {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+
+</html>
